@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="SSymjl" name="Plugex36SineWaveMidiSynth" projectType="audioplug"
-              jucerVersion="5.4.7" pluginFormats="buildAU,buildVST,buildVST3"
-              headerPath="../../../common&#10;" pluginManufacturer="belangeo"
-              companyName="belangeo" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
-  <MAINGROUP id="IAfKTv" name="Plugex36SineWaveMidiSynth">
+<JUCERPROJECT id="SSymjl" name="waylosynth1000" projectType="audioplug" pluginFormats="buildStandalone"
+              headerPath="../../../common&#10;" pluginManufacturer="seanwayland"
+              companyName="belangeo" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+              displaySplashScreen="1" companyWebsite="www.seanwayland.com"
+              jucerFormatVersion="1">
+  <MAINGROUP id="IAfKTv" name="waylosynth1000">
     <GROUP id="{6DFBD621-25B8-2BB1-AE51-57E407873211}" name="Source">
       <FILE id="soHl53" name="SinOsc.cpp" compile="1" resource="0" file="../common/SinOsc.cpp"/>
       <FILE id="FL1U6K" name="SinOsc.h" compile="0" resource="0" file="../common/SinOsc.h"/>
