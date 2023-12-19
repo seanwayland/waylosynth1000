@@ -37,9 +37,15 @@ void SinOsc::setPhase(float phase) {
     m_phase = phase;
 }
 
+void SinOsc::setSampleRate(double sampleRate) {
+    m_sampleRate = sampleRate;
+}
+
+// pass sample rate in here ?
+
 float SinOsc::process() {
     float value = sinf(m_runningPhase * M_PI * 2.0f + m_phase);
-    m_runningPhase += m_increment;
+    m_runningPhase += m_freq / m_sampleRate;
     if (m_runningPhase >= 1.0f) {
         m_runningPhase -= 1.0f;
     }

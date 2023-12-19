@@ -16,11 +16,16 @@ static const int numberOfVoices = 10;
 
 //==============================================================================
 SineWaveVoice::SineWaveVoice() {
+    
     oscillator.setup(getSampleRate());
 }
 
 bool SineWaveVoice::canPlaySound(SynthesiserSound *sound) {
     return dynamic_cast<SineWaveSound *> (sound) != nullptr;
+}
+
+void SineWaveVoice::setSampleRate (double samplerate){
+    oscillator.setSampleRate(samplerate);
 }
 
 void SineWaveVoice::startNote(int midiNoteNumber, float velocity,
@@ -40,8 +45,10 @@ void SineWaveVoice::stopNote(float /*velocity*/, bool allowTailOff) {
 }
 
 void SineWaveVoice::renderNextBlock(AudioSampleBuffer& outputBuffer, int startSample, int numSamples) {
+    oscillator.setSampleRate(getSampleRate());
     if (tailOff > 0.0) {
         while (--numSamples >= 0) {
+            
             auto currentSample = oscillator.process() * level * tailOff;
 
             for (auto i = outputBuffer.getNumChannels(); --i >= 0;)
@@ -106,8 +113,8 @@ Plugex_36_sineWaveMidiSynthAudioProcessor::Plugex_36_sineWaveMidiSynthAudioProce
     parameters (*this, nullptr, Identifier(JucePlugin_Name), createParameterLayout())
 {
 
-    for (auto i = 0; i < numberOfVoices; ++i)
-        synthesiser.addVoice(new SineWaveVoice());
+//    for (auto i = 0; i < numberOfVoices; ++i)
+//        synthesiser.addVoice(new SineWaveVoice());
 
     synthesiser.addSound(new SineWaveSound());
 
@@ -185,8 +192,12 @@ void Plugex_36_sineWaveMidiSynthAudioProcessor::prepareToPlay (double sampleRate
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    for (auto i = 0; i < numberOfVoices; ++i)
+           synthesiser.addVoice(new SineWaveVoice());
     keyboardState.reset();
-    synthesiser.setCurrentPlaybackSampleRate(sampleRate);
+    synthesiser.setCurrentPlaybackSampleRate(getSampleRate());
+
+    
 }
 
 void Plugex_36_sineWaveMidiSynthAudioProcessor::releaseResources()
@@ -222,6 +233,9 @@ bool Plugex_36_sineWaveMidiSynthAudioProcessor::isBusesLayoutSupported (const Bu
 
 void Plugex_36_sineWaveMidiSynthAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
 {
+    
+
+    
     ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
@@ -230,6 +244,8 @@ void Plugex_36_sineWaveMidiSynthAudioProcessor::processBlock (AudioBuffer<float>
 
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
+    
+    
 
     synthesiser.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
 

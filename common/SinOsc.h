@@ -18,6 +18,7 @@ class SinOsc {
         void setup(double sampleRate);
         void setFreq(float freq);
         void setPhase(float phase);
+        void setSampleRate(double sampleRate);
         float process();
 
     private:

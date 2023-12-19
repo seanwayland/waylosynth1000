@@ -37,6 +37,8 @@ struct SineWaveVoice   : public SynthesiserVoice
     void stopNote (float /*velocity*/, bool allowTailOff) override;
 
     void renderNextBlock (AudioSampleBuffer& outputBuffer, int startSample, int numSamples) override;
+    
+    void setSampleRate (double samplerate);
 
 private:
     SinOsc oscillator;
