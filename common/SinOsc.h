@@ -10,6 +10,7 @@
 *******************************************************************************/
 
 #pragma once
+#include "adsr.h"
 
 class SinOsc {
     public:
@@ -27,4 +28,5 @@ class SinOsc {
         float m_phase;
         float m_increment;
         float m_runningPhase;
+        ADSR2 env;
 };

@@ -12,6 +12,7 @@
 #include <cmath>
 #include "SinOsc.h"
 
+
 #ifndef M_PI
 #define M_PI (3.14159265358979323846264338327950288)
 #endif
@@ -24,6 +25,7 @@ void SinOsc::setup(double sampleRate) {
     m_freq = m_phase = 0.0f;
     m_increment = m_runningPhase = 0.0f;
     m_sampleRate = sampleRate;
+    
 }
 
 void SinOsc::setFreq(float freq) {
@@ -41,7 +43,6 @@ void SinOsc::setSampleRate(double sampleRate) {
     m_sampleRate = sampleRate;
 }
 
-// pass sample rate in here ?
 
 float SinOsc::process() {
     float value = sinf(m_runningPhase * M_PI * 2.0f + m_phase);

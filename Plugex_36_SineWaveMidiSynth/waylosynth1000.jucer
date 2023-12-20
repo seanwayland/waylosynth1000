@@ -7,6 +7,10 @@
               jucerFormatVersion="1">
   <MAINGROUP id="IAfKTv" name="waylosynth1000">
     <GROUP id="{6DFBD621-25B8-2BB1-AE51-57E407873211}" name="Source">
+      <FILE id="cR9AGR" name="adsr.cpp" compile="1" resource="0" file="Source/adsr.cpp"
+            xcodeResource="0"/>
+      <FILE id="LA1S5u" name="adsr.h" compile="0" resource="0" file="Source/adsr.h"
+            xcodeResource="0"/>
       <FILE id="soHl53" name="SinOsc.cpp" compile="1" resource="0" file="../common/SinOsc.cpp"/>
       <FILE id="FL1U6K" name="SinOsc.h" compile="0" resource="0" file="../common/SinOsc.h"/>
       <FILE id="dvPX14" name="PlugexLookAndFeel.h" compile="0" resource="0"
